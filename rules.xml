@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <theme href="blog3.html" />
+
+    <!-- logo -->
+    <replace css:theme="div.logo_default a" css:content="a#portal-logo" />
+    
+
+    <!-- h1 header -->
+    <replace css:theme-children="h4.title"
+             css:content-children="h1.documentFirstHeading" />
+ 
+    <!-- menu, with css(line 970) -->
+    <replace css:theme-children="nav ul#mainmenu" css:content-children="ul#portal-globalnav" />
+
+
+    <!-- sidebar -->
+    <replace css:theme-children="aside.widget_categories h3" css:content-children="div#externalLink h3" />
+    <replace css:theme-children="aside.widget_categories ul" css:content-children="div#externalLink ul" />
+
+
+
+
+    <!-- article list -->
+    <replace css:theme-children="div#content" css:content="div.tileItem.visualIEFloatFix" />
+
+    <!-- modifying content on the fly -->
+    <replace css:content="div.tileItem.visualIEFloatFix">
+      <article class="post_format_standard odd">
+        <div class="pic_wrapper image_wrapper">
+          <img alt="This is a Standard post" src="http://placehold.it/360x222" height="222" width="360">
+            <xsl:attribute name="src"><xsl:value-of select=".//a/@href" />/@@images/image</xsl:attribute>
+          </img>
+        </div>
+        <div class="title_area">
+          <h1 class="post_title">
+            <a href="post-standard-b3.html">
+              <xsl:attribute name="href"><xsl:value-of select=".//a/@href" /></xsl:attribute>
+              <xsl:value-of select=".//a[@class='summary url']" />
+            </a>
+          </h1>
+        </div>
+        <div class="post_content">
+          <p>
+            <xsl:value-of select=".//p[@class='tileBody']/span" />
+          </p>
+          <div class="readmore">
+            <a href="post-standard-b3.html" class="more-link">
+              <xsl:attribute name="href"><xsl:value-of select=".//a/@href" /></xsl:attribute>
+              Read more
+            </a>
+          </div>
+        </div>
+      </article>
+    </replace>
+
+
+    <drop css:theme="aside.widget-number-1" />
+    <drop css:theme="aside.widget-number-3" />
+    <drop css:theme="aside.widget-number-4" />
+    <drop css:theme="aside.widget-number-5" />
+
+</rules>
+
